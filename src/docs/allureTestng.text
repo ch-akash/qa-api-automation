@@ -1,6 +1,8 @@
 Installing a commandline
 Several options for Allure installation are currently supported:
 
+Allure homepage: https://docs.qameta.io/allure/#_testng
+
 1. Linux
 For debian-based repositories a PPA is provided:
 
@@ -18,3 +20,7 @@ For Windows, Allure is available from the Scoop commandline-installer.
 
 To install Allure, download and install Scoop and then execute in the Powershell:
         scoop install allure
+
+Generate reports:
+
+  allure serve

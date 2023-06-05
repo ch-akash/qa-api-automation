@@ -1,3 +1,4 @@
+@crud
 Feature: Scenario to test CRUD flow
 
   Scenario: Test for end to end CRUD operation

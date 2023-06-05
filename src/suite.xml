@@ -2,7 +2,7 @@
 <suite name="Api automation learning suite">
     <test name="API Test">
         <classes>
-            <class name="testClasses.ApiTests"/>
+            <class name="testClasses.CrudTest"/>
         </classes>
     </test>
 </suite>
