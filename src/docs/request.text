@@ -1,0 +1,10 @@
+1. Api request consists of headers, body, query parameters, path parameters, cookies, authentication, etc.
+2. RequestSpecification is used to set the base URI,
+   headers, query parameters, path parameters, body, cookies, authentication, etc. for the request.
+3. Given, When, Then are used to set the request type, path, and other request details.
+4. We will user methods such as pathParam(), queryParam(), header(), body(), accept() etc. to set the request details.
+
+
+ResponseSpecification:
+1. ResponseSpecification is used to set the expected response details such as status code, headers, body, cookies, etc
+2. You can convert response to POJO class using as() method.

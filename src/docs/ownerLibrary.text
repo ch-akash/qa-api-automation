@@ -1,0 +1,54 @@
+Maven dependency:
+
+  <dependency>
+            <groupId>org.aeonbits.owner</groupId>
+            <artifactId>owner</artifactId>
+            <version>1.0.12</version>
+   </dependency>
+
+Step 1 - Create an Interface and extend Config interface of Owner Library. We use sample interface name for this doc as - IConfiguration
+
+Step 2 - Create your properties file. e.g test.properties in src/main/resources package. If you have other properties file that you want to load, then create
+those properties files also in same package.
+        let's assume our test.properties has two fields as below:
+            baseUri=https://www.google.com/
+            timeout=10000
+
+Step 3 - Add the fields in your interface as below:
+
+             @Key("baseUri")
+             String baseUri();
+
+             @Key("timeout")
+             String timeout();
+
+Step 4 - Define annotations @Config.LoadPolicy(Config.LoadType.MERGE) and @Config.Sources({"classpath:test.properties"}). These property files names
+should be same as the property files you created in step 2. If you have more than 2 property file from step 2 then the names should be comma separated.
+
+e.g @Config.Sources({"classpath:test.properties","classpath:url.properties"})
+
+Your interface should look like this:
+
+@Config.LoadPolicy(Config.LoadType.MERGE)
+@Config.Sources({"classpath:test.properties"})
+public interface IConfiguration extends Config {
+
+    @Key("baseUri")
+    String baseUri();
+
+    @Key("timeout")
+    String timeout();
+}
+
+
+Step 5 - Create a new class with one static method with following syntax:
+
+public static IConfiguration getConfiguration() {
+    return ConfigCache.getOrCreate(IConfiguration.class);
+}
+
+Remember IConfiguration I have used for reference. This above method should return your interface which has been created in step 1.
+
+Now we can use it wherever we need a property from above files. Like this:
+
+        String baseUri = PropertyConfiguration.getConfiguration().baseUri();

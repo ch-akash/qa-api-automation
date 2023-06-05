@@ -1,0 +1,5 @@
+1. We will create a property util class
+2. We will create HTTP Base class to handle RestAssured requests
+3. Separate Test classes for all Apis
+4. A test class will handle assertions and validations
+5. Helper classes for creating requests

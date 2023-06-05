@@ -1,0 +1,10 @@
+RestAssured is a Java library that provides a domain-specific language (DSL) for writing powerful, maintainable tests for RESTful APIs.
+It can validate the response status code, headers, and response body.
+It has inbuilt support for BDD (Behavior Driven Development) style of writing tests.
+It has inbuilt serialization and deserialization of request and response which is based on Jackson.
+It supports JsonPath, XPath, and XmlPath to parse the response.
+It supports Hamcrest Matchers to validate the response.
+Jsonschema validation is also supported by RestAssured.
+It is your one-stop solution for API testing. All the common HTTP methods are supported: GET, POST, PUT, DELETE, PATCH, and HEAD.
+
+We will use sample open source learning Apis from: https://restful-booker.herokuapp.com/apidoc/index.html
