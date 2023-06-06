@@ -16,4 +16,10 @@ public interface IConfiguration extends Config {
 
     @Key("createBookingPath")
     String createBookingApiPath();
+
+    @Key("username")
+    String username();
+
+    @Key("password")
+    String password();
 }

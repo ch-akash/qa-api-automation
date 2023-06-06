@@ -7,6 +7,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pojo.BookingDates;
 import pojo.CreateBookingRequest;
+import pojo.response.CreateBookingResponse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -82,7 +83,27 @@ public class CreateBookingApiTests {
         Response createBookingResponse = createBookingApi.sendRequest();
         createBookingResponse.then().statusCode(200)
                              .and().body("bookingid", Matchers.notNullValue())
-                             .and().body("booking", Matchers.notNullValue());
+                             .and().body("booking", Matchers.notNullValue())
+                             .and().body("booking.firstname", Matchers.equalTo(firstname))
+                             .and().body("booking.lastname", Matchers.equalTo(lastname))
+                             .and().body("booking.additionalneeds", Matchers.equalTo(additionalNeeds))
+                             .and().body("booking.depositpaid", Matchers.equalTo(depositPaid))
+                             .and().body("booking.totalprice", Matchers.equalTo(amount))
+                             .and().body("booking.bookingdates.checkin", Matchers.equalTo(checkin))
+                             .and().body("booking.bookingdates.checkout", Matchers.equalTo(checkout));
+
+        String firstName = createBookingResponse.then().extract().jsonPath().getString("booking.firstname");
+        System.out.println("Firstname: " + firstName);
+
+        String lastName = createBookingResponse.then().extract().jsonPath().getString("booking.lastname");
+        System.out.println("Lastname: " + lastName);
+
+        String bookingDatesFromResponse = createBookingResponse.then().extract().jsonPath().getString("booking.bookingdates");
+        System.out.println("Booking dates: " + bookingDatesFromResponse);
+
+        CreateBookingResponse createBookingResponsePojo = createBookingResponse.as(CreateBookingResponse.class);
+        System.out.println("Firstname: " + createBookingResponsePojo.getBooking().getFirstname());
+
     }
 
 }
