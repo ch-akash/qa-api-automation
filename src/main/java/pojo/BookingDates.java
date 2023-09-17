@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class BookingDates {
 
-    private String checkin;
-    private String checkout;
+    private String checkIn;
+    private String checkOut;
 }

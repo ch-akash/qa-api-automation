@@ -38,13 +38,13 @@ public class SimplePostApi {
         CreateBookingRequest createBookingRequest = new CreateBookingRequest();
         createBookingRequest.setFirstname("Jerry");
         createBookingRequest.setLastname("Helpert");
-        createBookingRequest.setAdditionalfields("Mineral water");
-        createBookingRequest.setDepositpaid(true);
-        createBookingRequest.setTotalprice(1000);
+        createBookingRequest.setAdditionalFields("Mineral water");
+        createBookingRequest.setDepositPaid(true);
+        createBookingRequest.setTotalPrice(1000);
         BookingDates bookingDatesPojo = new BookingDates();
-        bookingDatesPojo.setCheckout("2024-01-01");
-        bookingDatesPojo.setCheckin("2023-11-11");
-        createBookingRequest.setBookingdates(bookingDatesPojo);
+        bookingDatesPojo.setCheckOut("2024-01-01");
+        bookingDatesPojo.setCheckIn("2023-11-11");
+        createBookingRequest.setBookingDates(bookingDatesPojo);
 
         requestSpecification.contentType(ContentType.JSON)
                             .and().baseUri("https://restful-booker.herokuapp.com")

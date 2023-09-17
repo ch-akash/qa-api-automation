@@ -8,6 +8,7 @@ import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import org.hamcrest.Matchers;
 import sharedState.SharedContext;
+import utils.RequestUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +19,7 @@ public class CreateBookingApiStepDefs {
 
     private HashMap<Object, Object> requestBody;
     private Response createBookingResponse;
-    private SharedContext sharedContext;
+    private final SharedContext sharedContext;
 
     public CreateBookingApiStepDefs(SharedContext sharedContext) {
         this.sharedContext = sharedContext;
@@ -26,28 +27,24 @@ public class CreateBookingApiStepDefs {
 
     @Given("we have a booking request")
     public void weHaveABookingRequest(List<Map<String, Object>> bookingRequestList) {
-        Map<String, Object> requestMap = bookingRequestList.get(0);
-        requestBody = new HashMap<>();
-        Map<String, Object> bookingDates = new HashMap<>();
-        bookingDates.put("checkin", requestMap.get("checkin"));
-        bookingDates.put("checkout", requestMap.get("checkout"));
-        requestBody.put("firstname", requestMap.get("firstname"));
-        requestBody.put("lastname", requestMap.get("lastname"));
-        requestBody.put("totalprice", requestMap.get("totalprice"));
-        requestBody.put("depositpaid", requestMap.get("depositpaid"));
-        requestBody.put("additionalneeds", requestMap.get("additionalneeds"));
-        requestBody.put("bookingdates", bookingDates);
+        var requestMap = bookingRequestList.get(0);
+        requestBody = RequestUtil.getStringObjectMap(requestMap.get("firstname"),
+                                                     requestMap.get("lastname"),
+                                                     requestMap.get("additionalneeds"),
+                                                     requestMap.get("depositpaid"),
+                                                     requestMap.get("totalprice"),
+                                                     requestMap.get("checkout"),
+                                                     requestMap.get("checkin"));
         this.sharedContext.requestMap = requestBody;
 
     }
 
     @When("we send the request to create booking api")
     public void weSendTheRequestToCreateBookingApi() {
-        CreateBookingApi createBookingApi = new CreateBookingApi();
+        var createBookingApi = new CreateBookingApi();
         createBookingApi.setBody(requestBody);
         createBookingResponse = createBookingApi.sendRequest();
         this.sharedContext.response = createBookingResponse;
-
     }
 
     @Then("HTTP response status code should be {int}")

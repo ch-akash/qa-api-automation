@@ -16,11 +16,16 @@ public abstract class BaseApi {
     private final Method method;
 
     public BaseApi(String basePath, Method method) {
+        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
         this.requestSpecification = RestAssured.given()
                                                .and().filter(new RequestLoggingFilter())
                                                .and().filter(new AllureRestAssured())
+//                                               .and().filter(new ApiLoggingFilter())
                                                .and().baseUri(PropertyConfiguration.getConfig().baseUri())
                                                .and().basePath(basePath);
+//        this.requestSpecification.log().ifValidationFails(LogDetail.URI);
+//        this.requestSpecification.expect().body("firstname", Matchers.equalTo("test"))
+//                                 .onFailMessage("Body is not supposed to be null");
         this.method = method;
     }
 

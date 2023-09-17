@@ -6,10 +6,10 @@ import lombok.Data;
 public class CreateBookingRequest {
 
     private String firstname;
-    private String lastname;
-    private boolean depositpaid;
-    private int totalprice;
-    private BookingDates bookingdates;
-    private String additionalfields;
+    private String Lastname;
+    private boolean depositPaid;
+    private int totalPrice;
+    private BookingDates bookingDates;
+    private String additionalFields;
 
 }
